@@ -1,0 +1,29 @@
+version: '3'
+services:
+  be:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/src
+      - node_modules:/src/node_modules
+    command: sh -c "npm start"
+    env_file: .env.docker
+    depends_on:
+      - db
+  db:
+    image: mongo:5-focal
+    restart: always
+
+    volumes:
+      - ./docker-entrypoint-initdb.d/init-mongodb.js:/docker-entrypoint-initdb.d/init-mongodb.js:ro
+      - data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+volumes:
+  data:
+  node_modules:

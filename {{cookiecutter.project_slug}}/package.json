@@ -1,0 +1,94 @@
+{
+  "name": "{{cookiecutter.project_slug}}",
+  "version": "1.0.0",
+  "description": "{{cookiecutter.project_slug}}",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=dev nodemon src",
+    "prod": "node src",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "cross-env NODE_ENV=test jest --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jest": "^27.4.1",
+    "date-fns": "^2.28.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "express-async-errors": "^3.1.1",
+    "http-status-codes": "^2.2.0",
+    "joi": "^17.6.0",
+    "mongoose": "^6.3.1"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^6.2.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.5",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^28.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.2",
+    "supertest": "^6.2.2"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 2018
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:prettier/recommended",
+      "plugin:import/recommended",
+      "plugin:jest/recommended"
+    ],
+    "env": {
+      "node": true,
+      "es6": true,
+      "jest": true
+    },
+    "rules": {
+      "semi": [
+        "error",
+        "always"
+      ],
+      "quotes": [
+        "error",
+        "double"
+      ],
+      "comma-dangle": [
+        "error",
+        "always-multiline"
+      ],
+      "import/order": [
+        "error",
+        {
+          "newlines-between": "always",
+          "alphabetize": {
+            "order": "asc",
+            "caseInsensitive": true
+          }
+        }
+      ],
+      "no-console": [
+        "error",
+        {
+          "allow": [
+            "warn",
+            "error"
+          ]
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "singleQuote": false,
+    "printWidth": 120,
+    "eqeqeq": true
+  }
+}

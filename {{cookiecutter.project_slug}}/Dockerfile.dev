@@ -1,0 +1,15 @@
+FROM node:16.14-alpine3.14
+
+RUN apk add --no-cache git
+RUN npm i -g npm
+
+RUN mkdir -p /src/node_modules
+WORKDIR /src
+
+RUN chown -R node:node /src/node_modules
+
+USER node
+
+COPY . /src
+
+EXPOSE 3000
