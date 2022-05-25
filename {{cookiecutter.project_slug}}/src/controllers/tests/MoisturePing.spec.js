@@ -14,15 +14,18 @@ describe("MoisturePing", () => {
 
   beforeEach(clearDb);
 
-  it("should create a new User", async () => {
-    const user = {
-      name: "{{cookiecutter.author_name}}",
-      password: "{{cookiecutter.author_name}}@1234",
+  it("should create a new MoisturePing", async () => {
+    const moisturePing = {
+      value: 90,
+      sensorId: 1,
     };
 
-    const response = await client.post("/api/v1/user").send(user);
+    const response = await client.post("/api/v1/moisture-ping").send(moisturePing);
 
     expect(response.status).toBe(201);
-    expect(await User.find({}).countDocuments()).toBe(1);
+    expect(await MoisturePing.find({}).countDocuments()).toBe(1);
+    const createdMoisturePing = await MoisturePing.findOne({});
+    expect(createdMoisturePing.value).toBe(90);
+    expect(createdMoisturePing.sensorId).toBe(1);
   });
 });
